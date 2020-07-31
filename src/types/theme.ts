@@ -25,7 +25,6 @@ export interface Theme {
   /**
    * Insets set by safe area view context
    */
-  dark: boolean,
   roundness: typeof roundness,
   spacing: typeof spacing
 }

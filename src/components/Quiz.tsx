@@ -1,30 +1,30 @@
 import React from 'react';
 import Text from './Text';
 import MultipleChoice from './MultipleChoice';
-import Section from './Section';
-import Button from './Button';
 import Theme from './Theme';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { themes } from '../constants';
 import { styleHelpers } from '../utils';
 import { useSelector, useDispatch } from '../store';
+// @ts-ignore
 import Fade from 'react-reveal/Fade';
 import { quizActions } from '../store/ducks/quiz';
+import { AiFillInfoCircle } from 'react-icons/ai';
 
 function Problem({
   title,
   code,
+  helpLink,
   options,
   answer,
-  onSubmit,
-  onNext
+  onSubmit
 }: {
   title: string,
   code: string,
+  helpLink: string,
   options: string[],
   answer: string,
-  onSubmit: (correct) => any,
-  onNext: () => any
+  onSubmit: (correct: boolean) => any
 }) {
   const classes = Theme.useStyleCreatorClassNames(styleCreator);
   const [selected, setSelected] = React.useState<string | null>(null);
@@ -38,7 +38,21 @@ function Problem({
   
   return (
     <div className={classes.quiz}>
-      <Text variant='h2'>{title}</Text>
+      <Text variant='h2'>
+        {title}
+        {helpLink ? (
+          <a href={helpLink} target="_blank" rel="noopener">
+            <AiFillInfoCircle
+              size={22}
+              color='#fff'
+              style={{
+                marginLeft: 5,
+                opacity: 0.3
+              }}
+            />
+          </a>
+        ) : null}
+      </Text>
       <SyntaxHighlighter language="jsx" style={themes.code}>
         {code}
       </SyntaxHighlighter>
@@ -78,7 +92,7 @@ export function Quiz() {
   return problem ? (
     <Fade 
       key={problem.id}
-      duration={600} 
+      duration={700} 
      >
       <Problem
         title={problem.title}
@@ -88,7 +102,7 @@ export function Quiz() {
         onSubmit={correct => {
           dispatch(quizActions.finishProblem(correct));
         }}
-        onNext={() => {}}  
+        helpLink={problem.helpLink}
       />
     </Fade>
   ) : null;

@@ -4,4 +4,5 @@ export type Problem = {
   title: string;
   options: string[];
   answer: string;
+  helpLink?: string;
 }

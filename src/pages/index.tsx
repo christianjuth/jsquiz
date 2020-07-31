@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Theme, Section, Quiz, Navbar } from '../components';
+import { Theme, Section, Quiz, Navbar, Footer } from '../components';
 import { styleHelpers } from '../utils';
 import { useSelector } from '../store';
 import Div100vh from 'react-div-100vh';
@@ -13,11 +13,18 @@ function Index() {
   return (
     <div style={{flex: 1}}>
       <Navbar/>
+
       <Div100vh className={classes.page}>
+        <Navbar.Spacer/>
+        <div className={classes.grow}/>
         <Section>
           <Quiz/>
         </Section>
+        <div className={classes.grow}/>
+
+        <Footer/>
       </Div100vh>
+
       <div className={classes.confettiWrap}>
         <Confetti 
           active={finishedProblem && correct}
@@ -32,9 +39,7 @@ function Index() {
 
 const styleCreator = Theme.makeStyleCreator(theme => ({
   page: {
-    ...styleHelpers.flex('column'),
-    alignItems: 'center',
-    justifyContent: 'center'
+    ...styleHelpers.flex('column')
   },
   grade: {
     position: 'absolute',
@@ -49,6 +54,10 @@ const styleCreator = Theme.makeStyleCreator(theme => ({
     justifyContent: 'center',
     pointerEvents: 'none',
     overflow: 'hidden'
+  },
+  grow: {
+    flex: 1,
+    maxWidth: '100%'
   }
 }));
 

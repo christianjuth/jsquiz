@@ -13,7 +13,8 @@ const data: Problem[] = [
       '2',
       '1'
     ],
-    answer: '3'
+    answer: '3',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/pop'
   },
   {
     id: 'arrays-shift-01',
@@ -27,7 +28,24 @@ const data: Problem[] = [
       '2',
       '1'
     ],
-    answer: '1'
+    answer: '1',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/shift'
+  },
+  {
+    id: 'array-deconstruct-01',
+    code: `
+      let arr = [1, 2, 3, 4];
+      let [num, ...rest] = arr;
+      console.log(rest);
+    `,
+    title: 'What gets logged to console?',
+    options: [
+      '[2, 3, 4]',
+      '1',
+      '[1, 2, 3, 4]'
+    ],
+    answer: '[2, 3, 4]',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment'
   },
   {
     id: 'nullish-coalescing-operator-01',
@@ -39,7 +57,8 @@ const data: Problem[] = [
       'true',
       'false'
     ],
-    answer: 'false'
+    answer: 'false',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator'
   },
   {
     id: 'nullish-coalescing-operator-02',
@@ -51,7 +70,8 @@ const data: Problem[] = [
       'undefined',
       'false'
     ],
-    answer: 'false'
+    answer: 'false',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator'
   },
   {
     id: 'nullish-coalescing-operator-03',
@@ -63,7 +83,8 @@ const data: Problem[] = [
       'null',
       '0'
     ],
-    answer: '0'
+    answer: '0',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator'
   },
   {
     id: 'nullish-coalescing-operator-04',
@@ -75,7 +96,8 @@ const data: Problem[] = [
       '0',
       '42'
     ],
-    answer: '0'
+    answer: '0',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator'
   }
 ];
 

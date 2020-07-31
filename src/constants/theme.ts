@@ -18,7 +18,7 @@ export function roundness(multiplier: number = 1) {
   return multiplier * BASE;
 }
 
-const light: Theme = {
+const main: Theme = {
   colors: {
     green: 'var(--green-color)',
     red: 'var(--red-color)',
@@ -41,7 +41,6 @@ const light: Theme = {
     medium: '',
     bold: ''
   },
-  dark: false,
   roundness,
   spacing
 }
@@ -198,13 +197,7 @@ const code = {
   }
 }
 
-const dark: Theme = {
-  ...light,
-  dark: true
-}
-
 export const themes = {
-  dark,
-  light,
+  main,
   code
 }

@@ -1,6 +1,7 @@
 export * from './Button';
 export * from './Divider';
 export * from './FlatList';
+export * from './Footer';
 export * from './MultipleChoice';
 export * from './Navbar';
 export * from './Quiz';
