@@ -46,7 +46,8 @@ const styleCreator = Theme.makeStyleCreator(theme => ({
     ...styleHelpers.lockHeight(NAVBAR_HEIGHT),
     ...styleHelpers.lockWidth('100%'),
     alignItems: 'center',
-    opacity: 0.5
+    opacity: 0.5,
+    marginBottom: 'env(safe-area-inset-bottom)'
   },
   sectionInside: {
     ...styleHelpers.flex('row'),

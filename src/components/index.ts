@@ -6,5 +6,6 @@ export * from './MultipleChoice';
 export * from './Navbar';
 export * from './Quiz';
 export * from './Section';
+export * from './SEO';
 export * from './Text';
 export * from './Theme';

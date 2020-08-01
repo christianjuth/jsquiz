@@ -27,6 +27,7 @@ function Problem({
   onSubmit: (correct: boolean) => any
 }) {
   const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const theme = Theme.useTheme();
   const [selected, setSelected] = React.useState<string | null>(null);
   const finishedProblem = useSelector(s => s.quiz.finishedProblem);
   
@@ -44,7 +45,7 @@ function Problem({
           <a href={helpLink} target="_blank" rel="noopener">
             <AiFillInfoCircle
               size={22}
-              color='#fff'
+              color={theme.colors.text}
               style={{
                 marginLeft: 5,
                 opacity: 0.3

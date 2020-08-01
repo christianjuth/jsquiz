@@ -4,8 +4,8 @@ const data: Problem[] = [
   {
     id: 'arrays-pop-01',
     code: `
-      const arr = [1, 2, 3];
-      const item = arr.pop();
+      let arr = [1, 2, 3];
+      let item = arr.pop();
     `,
     title: 'What is the value of item?',
     options: [
@@ -19,8 +19,8 @@ const data: Problem[] = [
   {
     id: 'arrays-shift-01',
     code: `
-      const arr = [1, 2, 3];
-      const item = arr.shift();
+      let arr = [1, 2, 3];
+      let item = arr.shift();
     `,
     title: 'What is the value of item?',
     options: [
@@ -50,7 +50,7 @@ const data: Problem[] = [
   {
     id: 'nullish-coalescing-operator-01',
     code: `
-      const bool = false ?? true;
+      let bool = false ?? true;
     `,
     title: 'What is the value of bool?',
     options: [
@@ -63,7 +63,7 @@ const data: Problem[] = [
   {
     id: 'nullish-coalescing-operator-02',
     code: `
-      const foo = undefined ?? false;
+      let foo = undefined ?? false;
     `,
     title: 'What is the value of foo?',
     options: [
@@ -76,7 +76,7 @@ const data: Problem[] = [
   {
     id: 'nullish-coalescing-operator-03',
     code: `
-      const foo = null ?? 0;
+      let foo = null ?? 0;
     `,
     title: 'What is the value of foo?',
     options: [
@@ -89,7 +89,7 @@ const data: Problem[] = [
   {
     id: 'nullish-coalescing-operator-04',
     code: `
-      const num = 0 ?? 42;
+      let num = 0 ?? 42;
     `,
     title: 'What is the value of num?',
     options: [
@@ -98,7 +98,65 @@ const data: Problem[] = [
     ],
     answer: '0',
     helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Nullish_coalescing_operator'
-  }
+  },
+  {
+    id: 'object-reference-01',
+    code: `
+      let obj1 = { a: 1 };
+      let obj2 = obj1;
+      obj2.a = 2;
+      console.log(obj1.a);
+    `,
+    title: 'What gets logged to console?',
+    options: [
+      '1',
+      '2'
+    ],
+    answer: '2',
+    helpLink: 'https://medium.com/@naveenkarippai/learning-how-references-work-in-javascript-a066a4e15600'
+  },
+  {
+    id: 'object-deconstruct-01',
+    code: `
+      let obj = { a: 1 };
+      let { a } = obj;
+      console.log(a);
+    `,
+    title: 'What gets logged to console?',
+    options: [
+      '1',
+      'undefined',
+      'null'
+    ],
+    answer: '1',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment'
+  },
+  {
+    id: 'object-undefined-key-01',
+    code: `
+      let obj = {};
+      console.log(obj.a);
+    `,
+    title: 'What gets logged to console?',
+    options: [
+      'null',
+      'undefined'
+    ],
+    answer: 'undefined'
+  },
+  {
+    id: 'ternary-operator-01',
+    code: `
+      let num = true ? 1 : 0;
+    `,
+    title: 'What is the value of num?',
+    options: [
+      '1',
+      '0'
+    ],
+    answer: '1',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator'
+  },
 ];
 
 export default data;

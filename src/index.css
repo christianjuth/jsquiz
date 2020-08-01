@@ -85,7 +85,6 @@ body {
   padding: 0;
   margin: 0;
   background: var(--background-color);
-  
 }
 
 * {
@@ -101,7 +100,7 @@ pre {
 
 pre *,
 code * {
-  font-family: Hack;
+  font-family: Hack, monospace;
   font-size: 1.1rem;
 }
 
