@@ -2,6 +2,12 @@
 
 exports[`<Index /> renders correctly 1`] = `
 <div
-  className=" context1-divider"
+  style={
+    Object {
+      "backgroundColor": "#EEEEEE",
+      "height": 1,
+      "width": "100%",
+    }
+  }
 />
 `;
