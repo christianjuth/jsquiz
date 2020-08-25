@@ -7,47 +7,63 @@ import { styleHelpers } from '../utils';
 const NAVBAR_HEIGHT = 50;
 
 export function Footer() {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
  
   return (
-    <div className={classes.footer}>
-      <Section classNameInside={classes.sectionInside}>
+    <div style={styles.footer}>
+      <Section styleInside={styles.sectionInside}>
         <a 
           href='https://github.com/christianjuth/quiz-underreacted' 
-          className={classes.link}
+          style={styles.link}
           target="_blank" rel="noopener"
         >
-          <Text variant='h5' noPadding className={classes.text}>source</Text>
+          <Text variant='h5' noPadding style={styles.text}>source</Text>
         </a>
 
         <a 
           href='https://github.com/christianjuth/quiz-underreacted/issues' 
-          className={classes.link}
+          style={styles.link}
           target="_blank" rel="noopener"
         >
-          <Text variant='h5' noPadding className={classes.text}>feedback</Text>
+          <Text variant='h5' noPadding style={styles.text}>feedback</Text>
         </a>
         
         <a 
           href='https://twitter.com/christianjuth' 
-          className={classes.link}
+          style={styles.link}
           target="_blank" rel="noopener"
         >
-          <Text variant='h5' noPadding className={classes.text}>author</Text>
+          <Text variant='h5' noPadding style={styles.text}>author</Text>
         </a>
       </Section>
     </div>  
   );
 }
 
+Footer.Spacer = Spacer;
+function Spacer() {
+  const styles = Theme.useStyleCreator(styleCreator);
+  return (
+    <div style={styles.spacer}/>
+  );
+}
+
 const styleCreator = Theme.makeStyleCreator(theme => ({
+  spacer: {
+    ...styleHelpers.lockHeight(NAVBAR_HEIGHT)
+  },
   footer: {
     ...styleHelpers.flex('row'),
     ...styleHelpers.lockHeight(NAVBAR_HEIGHT),
     ...styleHelpers.lockWidth('100%'),
     alignItems: 'center',
-    opacity: 0.5,
-    marginBottom: 'env(safe-area-inset-bottom)'
+    marginBottom: 'env(safe-area-inset-bottom)',
+    position: 'fixed',
+    bottom: 0,
+    backgroundColor: theme.colors.transparentBackground,
+    backdropFilter: 'blur(30px)',
+    zIndex: 2000,
+    borderTop: `1px solid ${theme.colors.divider}`
   },
   sectionInside: {
     ...styleHelpers.flex('row'),

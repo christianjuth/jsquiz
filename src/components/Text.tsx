@@ -28,7 +28,6 @@ export function Text({
   children,
   numberOfLines = null,
   lockNumberOfLines = false,
-  className,
   variant = 'span',
   style,
   noPadding = false
@@ -36,25 +35,19 @@ export function Text({
   children: (string | ReactChild)[] | string | ReactChild
   numberOfLines?: number | null
   lockNumberOfLines?: boolean
-  className?: string
   variant?: Variant
   style?: CSSProperties
   noPadding?: boolean
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator, numberOfLines);
   const styles = Theme.useStyleCreator(styleCreator, numberOfLines);
   return (
     <span
-      className={[
-        noPadding ? classes.noPadding : null,
-        classes[variant],
-        numberOfLines ? classes.trunkcate : null,
-        className, 
-      ].join(' ')}
       style={{
+        ...styles[variant],
         ...(lockNumberOfLines && (numberOfLines !== null) && variant) ? {
           minHeight: `calc(${styles[variant].lineHeight} * ${numberOfLines}`
         } : null,
+        ...(noPadding ? styles.noPadding : null),
         ...style
       }}
     >
@@ -64,19 +57,13 @@ export function Text({
 }
 
 export function Br() {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   return (
-    <div className={classes.br}/>
+    <div style={styles.br}/>
   );
 }
 
 const styleCreator = Theme.makeStyleCreator((theme, numberOfLines) => ({
-  trunkcate: numberOfLines ? {
-    display: '-webkit-box',
-    '-webkit-line-clamp': numberOfLines,
-    '-webkit-box-orient': 'vertical',
-    overflow: 'hidden'
-  } : {},
   h1: {
     ...getTextBase({
       size: 2.5,

@@ -12,17 +12,18 @@ function Indicator({
   selected: boolean,
   color?: string
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
+  console.log(styles)
   return (
     <div 
-      className={classes.indicator}
       style={{
-        borderColor: color
+        ...styles.indicator,
+        ...(color ? { borderColor: color } : null)
       }}
      >
       <div
-        className={selected ? classes.indicatorInside : ''}
         style={{
+          ...(selected ? styles.indicatorInside : null),
           backgroundColor: color
         }}
       />
@@ -41,12 +42,12 @@ function Option({
   onClick: () => any,
   isAnswer: boolean
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   const theme = Theme.useTheme();
   const color = isAnswer ? theme.colors.green : theme.colors.red;
   return (
     <div 
-      className={classes.option}
+      style={styles.option}
       onClick={onClick}
     >
       <Indicator
@@ -56,11 +57,11 @@ function Option({
       <Text 
         variant='p' 
         noPadding
-        style={{
-          color: selected ? color : undefined
-        }}
+        style={selected ? {
+          color
+        } : undefined}
       >{value}</Text>
-      <div className={classes.grow}/>
+      <div style={styles.grow}/>
       {selected ? (
         <Text 
           variant='p' 
@@ -79,17 +80,17 @@ export function MultipleChoice({
   answer,
   value,
   onChange,
-  className,
+  style,
   disabled = false
 }: {
-  className?: string,
+  style?: React.CSSProperties,
   options: string[],
   answer: string,
   value: string | null,
   onChange: (string) => any,
   disabled: boolean
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   const [scrambledOptions, setScrambledOptions] = React.useState<string[]>([]);
 
   React.useEffect(() => {
@@ -98,7 +99,7 @@ export function MultipleChoice({
   
   return (
     <FlatList 
-      className={[className, classes.multipleChoice].join(' ')}
+      style={{ ...style, ...styles.multipleChoice }}
       data={scrambledOptions}
       keyExtractor={item => item}
       renderItem={item => (
@@ -120,7 +121,8 @@ export function MultipleChoice({
 
 const styleCreator = Theme.makeStyleCreator(theme => ({
   multipleChoice: {
-    ...styleHelpers.lockWidth('100%')
+    ...styleHelpers.lockWidth('100%'),
+    userSelect: 'none'
   },
   option: {
     ...styleHelpers.flex('row'),

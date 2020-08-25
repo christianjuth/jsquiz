@@ -1,5 +1,6 @@
 import React from 'react';
 import Text from './Text';
+import Button from './Button';
 import MultipleChoice from './MultipleChoice';
 import Theme from './Theme';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -26,10 +27,12 @@ function Problem({
   answer: string,
   onSubmit: (correct: boolean) => any
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   const theme = Theme.useTheme();
   const [selected, setSelected] = React.useState<string | null>(null);
   const finishedProblem = useSelector(s => s.quiz.finishedProblem);
+  const correct = useSelector(s => s.quiz.correct);
+  const dispatch = useDispatch();
   
   React.useEffect(() => {
     if (selected !== null) {
@@ -38,7 +41,7 @@ function Problem({
   }, [selected, answer]);
   
   return (
-    <div className={classes.quiz}>
+    <div style={styles.quiz}>
       <Text variant='h2'>
         {title}
         {helpLink ? (
@@ -58,13 +61,23 @@ function Problem({
         {code}
       </SyntaxHighlighter>
       <MultipleChoice
-        className={classes.multipleChoice}
+        style={styles.multipleChoice}
         options={options}  
         value={selected}
         onChange={setSelected}
         answer={answer}
         disabled={finishedProblem}
       />
+      <div 
+        style={{
+          ...styles.buttonWrap,
+          ...((!correct && finishedProblem) ? null : styles.hide)
+        }}
+      >
+        <Button onClick={() => dispatch(quizActions.loadNextProblem())}>
+          Next
+        </Button>
+      </div>
     </div>
   );
 }
@@ -73,13 +86,14 @@ export function Quiz() {
   const dispatch = useDispatch();
   const problem = useSelector(s => s.quiz.problem);
   const finishedProblem = useSelector(s => s.quiz.finishedProblem);
+  const correct = useSelector(s => s.quiz.correct);
   
   React.useEffect(() => {
     dispatch(quizActions.loadNextProblem());
   }, []);
   
   React.useEffect(() => {
-    if (finishedProblem) {
+    if (finishedProblem && correct) {
       const id = setTimeout(() => {
         dispatch(quizActions.loadNextProblem());
       }, 1500);
@@ -88,7 +102,7 @@ export function Quiz() {
         clearTimeout(id);
       }
     }
-  }, [finishedProblem]);
+  }, [finishedProblem, correct]);
   
   return problem ? (
     <Fade 
@@ -111,9 +125,19 @@ export function Quiz() {
 
 const styleCreator = Theme.makeStyleCreator(theme => ({
   quiz: {
-    ...styleHelpers.flex('column')
+    ...styleHelpers.flex('column'),
+    paddingTop: theme.spacing(3)
   },
   multipleChoice: {
     margin: theme.spacing(0, 0, 1)
+  },
+  buttonWrap: {
+    ...styleHelpers.flex('row'),
+    justifyContent: 'center',
+    marginTop: theme.spacing(2)
+  },
+  hide: {
+    opacity: 0,
+    cursorEvents: 'none'
   }
 }));

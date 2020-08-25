@@ -145,6 +145,21 @@ const data: Problem[] = [
     answer: 'undefined'
   },
   {
+    id: 'object-spread-01',
+    code: `
+      let obj = { a: 1, b: 2 };
+      let { a, ...rest } = obj;
+      console.log(rest);
+    `,
+    title: 'What gets logged to console?',
+    options: [
+      '{b: 2}',
+      '{a: 1, b: 2}'
+    ],
+    answer: '{b: 2}',
+    helpLink: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax'
+  },
+  {
     id: 'ternary-operator-01',
     code: `
       let num = true ? 1 : 0;

@@ -2,24 +2,34 @@ import React from 'react';
 import Theme from './Theme';
 
 export function Divider({
-  className
+  style
 }: {
-  className?: string
+  style?: React.CSSProperties
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   return (
-    <div className={[className, classes.divider].join(' ')}/>
+    <div 
+      style={{
+        ...style, 
+        ...styles.divider
+      }}
+    />
   );
 }
 
 function Vertical({
-  className
+  style
 }: {
-  className: string
+  style: React.CSSProperties
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   return (
-    <div className={[className, classes.dividerVertical].join(' ')}/>
+    <div 
+      style={{
+        ...style, 
+        ...styles.dividerVertical
+      }}
+    />
   );
 }
 

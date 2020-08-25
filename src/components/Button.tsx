@@ -4,32 +4,29 @@ import Theme from './Theme';
 export function Button({
   children,
   onClick,
-  className,
-  styles
+  style,
 }: {
   children: string
   onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => any
-  className?: string
-  styles?: React.CSSProperties
+  style?: React.CSSProperties
 }) {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   return (
     <div 
-      className={[
-        classes.button,
-        className
-      ].join(' ')} 
-      style={styles}
+      style={{
+        ...styles.button,
+        ...style
+      }}
       onClick={onClick}
     >
-      <span className={classes.buttonText}>{children}</span>
+      <span style={styles.buttonText}>{children}</span>
     </div>
   );
 }
 
 const styleCreator = Theme.makeStyleCreator(theme => ({
   button: {
-    padding: theme.spacing(2, 4),
+    padding: theme.spacing(1, 2),
     backgroundColor: theme.colors.accent,
     borderRadius: theme.roundness(1),
     cursor: 'pointer'

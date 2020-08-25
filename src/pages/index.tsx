@@ -6,26 +6,28 @@ import Div100vh from 'react-div-100vh';
 import Confetti from 'react-dom-confetti';
 
 function Index() {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   const finishedProblem = useSelector(s => s.quiz.finishedProblem);
   const correct = useSelector(s => s.quiz.correct);
   
   return (
     <div style={{flex: 1}}>
       <Navbar/>
+      <Footer/>
 
-      <Div100vh className={classes.page}>
-        <Navbar.Spacer/>
-        <div className={classes.grow}/>
-        <Section>
-          <Quiz/>
-        </Section>
-        <div className={classes.grow}/>
-
-        <Footer/>
+      <Div100vh>
+        <div style={styles.page}>
+          <Navbar.Spacer/>
+          <div style={styles.grow}/>
+          <Section>
+            <Quiz/>
+          </Section>
+          <div style={styles.grow}/>
+          <Footer.Spacer/>
+        </div>
       </Div100vh>
 
-      <div className={classes.confettiWrap}>
+      <div style={styles.confettiWrap}>
         <Confetti 
           active={finishedProblem && correct}
           config={{
@@ -39,7 +41,9 @@ function Index() {
 
 const styleCreator = Theme.makeStyleCreator(theme => ({
   page: {
-    ...styleHelpers.flex('column')
+    ...styleHelpers.flex('column'),
+    flex: 1,
+    minHeight: '100%'
   },
   grade: {
     position: 'absolute',

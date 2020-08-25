@@ -12,20 +12,20 @@ function Index() {
     }
   }, []);
 
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   
   return (
     <div style={{flex: 1}}>
       <Navbar/>
 
-      <Div100vh className={classes.page}>
+      <Div100vh style={styles.page}>
         <Navbar.Spacer/>
-        <div className={classes.grow}/>
-        <Section classNameInside={classes.column}>
+        <div style={styles.grow}/>
+        <Section styleInside={styles.column}>
           <Text variant='h2'>404. Page not found.</Text>
           <Text variant='p'>You will be redirected...</Text>
         </Section>
-        <div className={classes.grow}/>
+        <div style={styles.grow}/>
 
         <Footer/>
       </Div100vh>

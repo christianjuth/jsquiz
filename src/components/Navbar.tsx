@@ -15,17 +15,17 @@ function calculateGrade(grades: number[]) {
 }
 
 export function Navbar() {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   const grades = useSelector(s => s.quiz.grades);
  
   return (
-    <div className={classes.navbar}>
-      <Section classNameInside={classes.sectionInside}>
-        <Text variant='h5' noPadding className={classes.text}><i>Quiz</i>.Underreacted</Text>
+    <div style={styles.navbar}>
+      <Section styleInside={styles.sectionInside}>
+        <Text variant='h5' noPadding style={styles.text}><i>Quiz</i>.Underreacted</Text>
         
         {grades.length > 0 ? (
           <Fade duration={800}>
-            <Text variant='p' noPadding className={classes.text}>Grade: {calculateGrade(grades)+''}%</Text>
+            <Text variant='p' noPadding style={styles.text}>Grade: {calculateGrade(grades)+''}%</Text>
           </Fade>
         ) : null}
       </Section>
@@ -35,9 +35,9 @@ export function Navbar() {
 
 Navbar.Spacer = Spacer;
 function Spacer() {
-  const classes = Theme.useStyleCreatorClassNames(styleCreator);
+  const styles = Theme.useStyleCreator(styleCreator);
   return (
-    <div className={classes.spacer}/>
+    <div style={styles.spacer}/>
   );
 }
 

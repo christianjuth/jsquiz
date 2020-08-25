@@ -45,16 +45,6 @@ export function withStyleCreator<
   return WebTheming.withStyleCreator<T, S>(Component, styleFn, ...extraData)
 }
 
-export function useStyleCreatorClassNames<
-  T = ComputedTheme,
-  S = never
->(
-  styleFn: GenerateStylesFunction<T, S>,
-  ...extraData: any[]
-) {
-  return WebTheming.useStyleCreatorClassNames(styleFn, ...extraData);
-}
-
 export function withTheme(Component: any): any {
   return class WrappedComponent extends React.Component<{}, null> {
     static contextType = Context;
@@ -70,7 +60,6 @@ export const Theme = {
   makeStyleCreator,
   useStyleCreator,
   withStyleCreator,
-  useStyleCreatorClassNames,
   withTheme
 };
 export default Theme;

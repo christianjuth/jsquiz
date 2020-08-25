@@ -1,24 +1,30 @@
 import React from 'react';
-import { makeStyleCreator, useStyleCreatorClassNames } from './Theme'
+import { makeStyleCreator, useStyleCreator } from './Theme'
 import { ReactChildren } from '../types';
 
 export function Section({
   children,
-  className,
   style,
-  classNameInside,
-  styleInside
+  styleInside,
 }: {
   children: ReactChildren,
-  className?: string,
   style?: React.CSSProperties,
-  classNameInside?: string,
   styleInside?: React.CSSProperties,
 }) {
-  const classes = useStyleCreatorClassNames(styleCreator);
+  const styles = useStyleCreator(styleCreator);
   return (
-    <div style={style} className={[className, classes.section].join(' ')}>
-      <div style={styleInside} className={[classNameInside, classes.inside].join(' ')}>
+    <div 
+      style={{
+        ...styles.section,
+        ...style
+      }}
+    >
+      <div 
+        style={{
+          ...styles.inside,
+          ...styleInside
+        }}
+      >
         {children}
       </div>
     </div>
