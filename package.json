@@ -20,7 +20,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "next": "9.5.2",
+    "next": "9.5.4",
     "preact": "^10.4.7",
     "preact-compat": "^3.19.0",
     "react": "16.13.1",
